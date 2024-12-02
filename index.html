@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버스 게시판</title>
+</head>
+<body>
+    <h1>버스 게시판</h1>
+    
+    <h2>버스 시간표</h2>
+    <form method="POST">
+        <label for="end_time">학과 수업 종료 시간:</label>
+        <input type="time" id="end_time" name="end_time" required>
+        <button type="submit">확인</button>
+    </form>
+
+    {% if bus_info %}
+        <h3>결과</h3>
+        <p>{{ bus_info }}</p>
+    {% endif %}
+
+    <hr>
+
+    <h2>게시글 목록</h2>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <strong>{{ post.title }}</strong> ({{ post.date }})
+                <p>{{ post.content }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('new_post') }}">새 게시글 작성</a>
+</body>
+</html>
